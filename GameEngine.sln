@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VortexEditor.0", "VortexEditor.0\VortexEditor.0.csproj", "{61E2E9BD-0652-4F5B-BCF9-6F5C0025B476}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "GameEngine\GameEngine.vcxproj", "{1AFDAC41-5C1E-467C-99E3-1544CFFA632C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1AFDAC41-5C1E-467C-99E3-1544CFFA632C}.Debug|x64.ActiveCfg = Debug|x64
+		{1AFDAC41-5C1E-467C-99E3-1544CFFA632C}.Debug|x64.Build.0 = Debug|x64
+		{1AFDAC41-5C1E-467C-99E3-1544CFFA632C}.Debug|x86.ActiveCfg = Debug|Win32
+		{1AFDAC41-5C1E-467C-99E3-1544CFFA632C}.Debug|x86.Build.0 = Debug|Win32
+		{1AFDAC41-5C1E-467C-99E3-1544CFFA632C}.Release|x64.ActiveCfg = Release|x64
+		{1AFDAC41-5C1E-467C-99E3-1544CFFA632C}.Release|x64.Build.0 = Release|x64
+		{1AFDAC41-5C1E-467C-99E3-1544CFFA632C}.Release|x86.ActiveCfg = Release|Win32
+		{1AFDAC41-5C1E-467C-99E3-1544CFFA632C}.Release|x86.Build.0 = Release|Win32
+		{61E2E9BD-0652-4F5B-BCF9-6F5C0025B476}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{61E2E9BD-0652-4F5B-BCF9-6F5C0025B476}.Debug|x64.Build.0 = Debug|Any CPU
+		{61E2E9BD-0652-4F5B-BCF9-6F5C0025B476}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{61E2E9BD-0652-4F5B-BCF9-6F5C0025B476}.Debug|x86.Build.0 = Debug|Any CPU
+		{61E2E9BD-0652-4F5B-BCF9-6F5C0025B476}.Release|x64.ActiveCfg = Release|Any CPU
+		{61E2E9BD-0652-4F5B-BCF9-6F5C0025B476}.Release|x64.Build.0 = Release|Any CPU
+		{61E2E9BD-0652-4F5B-BCF9-6F5C0025B476}.Release|x86.ActiveCfg = Release|Any CPU
+		{61E2E9BD-0652-4F5B-BCF9-6F5C0025B476}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A0611C5-9C03-49F6-AE25-C149CD010335}
+	EndGlobalSection
+EndGlobal
