@@ -25,3 +25,5 @@ C:\Users\VillageTech\Desktop\GameEngine\GameEngine\VortexEditor.0\obj\Debug\Gene
 C:\Users\VillageTech\Desktop\GameEngine\GameEngine\VortexEditor.0\obj\Debug\GameProject\NewProjectView.baml
 C:\Users\VillageTech\Desktop\GameEngine\GameEngine\VortexEditor.0\obj\Debug\GameProject\OpenProjectView.baml
 C:\Users\VillageTech\Desktop\GameEngine\GameEngine\VortexEditor.0\obj\Debug\GameProject\ProjectBrowserDialog.baml
+C:\Users\VillageTech\Desktop\GameEngine\GameEngine\VortexEditor.0\obj\Debug\VortexEditor.0.csproj.AssemblyReference.cache
+C:\Users\VillageTech\Desktop\GameEngine\GameEngine\VortexEditor.0\obj\Debug\VortexEditor.0.csproj.CopyComplete

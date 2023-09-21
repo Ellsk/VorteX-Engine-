@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace VortexEditor._0.GameProject
+namespace VortexEditor._0
 {
     internal class ViewModelBase : INotifyPropertyChanged
     {

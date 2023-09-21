@@ -1,30 +1,116 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using VortexEditor._0.Utilities;
+//d:DataContext="{d:DesignIstance Type=local:NewProject, isDesignTimeCreatable=True}" 
+/* 
+ /* var template = new ProjectTemplate()
+                     {
+                         ProjectFile = templatesFile, // Change tF to "project.vortex"
+                         ProjectType = "Empty Project",
+                         Folders = new List<string>() { "_Vortex", "Content", "GameCode"}
+                     };
+
+
+                     Serializer.ToFile(template, templatesFile); // files == templateFiles
+                    
+*/
 
 namespace VortexEditor._0.GameProject
 {
+    [DataContract]
+    public class ProjectTemplate
+    {
+        [DataMember]
+        public string? ProjectType { get; set; }
+        [DataMember]
+        public string? ProjectFile { get; set; }
+        [DataMember]
+        public List<string>? Folders { get; set; }
+
+        public byte[] Icon { get; set; }
+        public byte[] Screenshot { get; set; }
+
+        public string IconFilePath { get; set; }
+        public string ScreenshotFilePath { get; set; }
+
+        public string ProjectFilePath { get; set; }
+
+
+    }
     class NewProject : ViewModelBase
     {
-        private string _name = "NewProject";
+        //TODO: get the path from installation location
+        private readonly string _templatePath = @"..\..\VortexEditor.0\ProjectTemplate";
+        
+        private string _projectName = "NewProject";
 
-        public string Name
+        public string ProjectName
         {
-            get => _name;
+            get => _projectName;
 
             set
             {
-                if (_name != value)
+                if (_projectName != value)
                 {
-                    _name = value;
-                    OnPropertyChanged(nameof(Name));
+                    _projectName = value;
+                    OnPropertyChanged(nameof(ProjectName));
                 }
             }
         }
 
+
+        private string _projectPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\VortexProject\";
+        public string ProjectPath
+        {
+            get => _projectPath;
+
+            set
+            {
+                if (_projectPath != value)
+                {
+                    _projectPath = value;
+                    OnPropertyChanged(nameof(ProjectPath));
+                }
+            }
+        }
+
+        private ObservableCollection<ProjectTemplate>_projectTemplates = new ObservableCollection<ProjectTemplate>();
+        public ReadOnlyObservableCollection<ProjectTemplate> ProjectTemplates { get; }
+        public NewProject()
+        {
+            ProjectTemplates = new ReadOnlyObservableCollection<ProjectTemplate>(_projectTemplates);    
+            try 
+            {  
+                var templatesFiles = Directory.GetFiles(_templatePath, "Template.xml", SearchOption.AllDirectories);
+                Debug.Assert(templatesFiles.Any());
+
+                foreach (var file in templatesFiles)
+                {
+                    var template = Serializer.FromFile<ProjectTemplate>(file);
+                    template.IconFilePath = System.IO.Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), "Icon.png"));
+                    template.Icon = File.ReadAllBytes(template.IconFilePath);
+                    template.ScreenshotFilePath = System.IO.Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), "Screenshot.png"));
+                    template.Screenshot = File.ReadAllBytes(template.ScreenshotFilePath);
+                    template.ProjectFilePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), template.ProjectFile));   
+
+                    _projectTemplates.Add(template);
+                } 
+            }
+
+            catch(Exception ex) 
+            {
+                Debug.WriteLine(ex.Message);
+                //TODO: log errors
+            }
+        }
     }
 }
     
