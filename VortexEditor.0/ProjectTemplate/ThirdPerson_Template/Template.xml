@@ -6,5 +6,5 @@ xmlns="http://schemas.datacontract.org/2004/07/VortexEditor._0.GameProject" xmln
 	<a:string>GameCode</a:string>
 </Folders>
 <ProjectFile>..\..\VortexEditor.0\ProjectTemplate\EmptyProject\Template.xml</ProjectFile>
-<ProjectType>Third-Person Project</ProjectType>
+<ProjectType>ThirdPerson Project</ProjectType>
 </ProjectTemplate>
