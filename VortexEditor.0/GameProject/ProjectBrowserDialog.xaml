@@ -18,8 +18,8 @@
                           Click="OnToggleButton_Click" IsChecked="False"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" x:Name="browserContent">
-            <local:NewProjectView/>
             <local:OpenProjectView/>
+            <local:NewProjectView/>
         </StackPanel>
     </Grid>
 </Window>

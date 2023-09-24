@@ -82,24 +82,72 @@ namespace VortexEditor._0.GameProject
             }
         }
 
-        private ObservableCollection<ProjectTemplate>_projectTemplates = new ObservableCollection<ProjectTemplate>();
+        private bool _isValid ;
+        
+        public bool IsValid
+        {
+            get => _isValid;
+            set
+            {
+                if (_isValid != value)
+                {
+                    _isValid = value;
+                    OnPropertyChanged(nameof(IsValid));
+                }
+            }
+        }
+
+        private string _errorMsg;
+        public string ErrorMsg
+        {
+            get => _errorMsg;
+            set
+            {
+                if (_errorMsg != value)
+                {
+                    _errorMsg = value;
+                    OnPropertyChanged(nameof(ErrorMsg));
+                }
+            }
+        }
+        private readonly ObservableCollection<ProjectTemplate> _projectTemplates = new();
         public ReadOnlyObservableCollection<ProjectTemplate> ProjectTemplates { get; }
+
+       
+        private bool ValidateProjectPath()
+        {
+            var path = ProjectPath;
+
+            if (!Path.EndsInDirectorySeparator(path)) path += @"\";
+            path += $@"{ProjectName}\";
+
+            IsValid = false;
+
+            if (string.IsNullOrWhiteSpace(ProjectName.Trim()))
+            {
+                ErrorMsg = "Type project name";
+            }
+            else if (ProjectName.IndexOfAny(Path.GetInvalidFileNameChars() != 1))
+            {
+
+            }
+        }
         public NewProject()
         {
             ProjectTemplates = new ReadOnlyObservableCollection<ProjectTemplate>(_projectTemplates);    
             try 
             {  
-                var templatesFiles = Directory.GetFiles(_templatePath, "Template.xml", SearchOption.AllDirectories);
+                var templatesFiles = Directory.GetFiles(_templatePath, "template.xml", SearchOption.AllDirectories);
                 Debug.Assert(templatesFiles.Any());
 
                 foreach (var file in templatesFiles)
                 {
                     var template = Serializer.FromFile<ProjectTemplate>(file);
-                    template.IconFilePath = System.IO.Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), "Icon.png"));
+                    template.IconFilePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), "Icon.png"));
                     template.Icon = File.ReadAllBytes(template.IconFilePath);
-                    template.ScreenshotFilePath = System.IO.Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), "Screenshot.png"));
+                    template.ScreenshotFilePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), "Screenshot.jpeg"));
                     template.Screenshot = File.ReadAllBytes(template.ScreenshotFilePath);
-                    template.ProjectFilePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), template.ProjectFile));   
+                    template.ProjectFilePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), template.ProjectFile));
 
                     _projectTemplates.Add(template);
                 } 
